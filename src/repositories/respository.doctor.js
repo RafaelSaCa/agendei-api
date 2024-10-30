@@ -30,6 +30,7 @@ async function Inserir(name, specialty, icon) {
   return doctor;
 }
 
+
 async function Editar(id_doctor, name, specialty, icon) {
 
   let sql = `update doctors set name=?, specialty=?, icon=?
@@ -40,6 +41,7 @@ async function Editar(id_doctor, name, specialty, icon) {
   return {id_doctor};
 }
 
+
 async function Excluir(id_doctor) {
 
   let sql = `delete from doctors where id_doctor = ?`;
@@ -49,4 +51,18 @@ async function Excluir(id_doctor) {
   return {id_doctor};
 }
 
-export default { Listar, Inserir, Editar, Excluir};
+
+async function ListarServicos(id_doctor) {
+
+  let sql = `select d.id_service, s.description, d.price
+    from doctors_services d
+    join services s on (s.id_service = d.id_service)
+    where d.id_doctor = ?
+    order by s.description`;
+
+  const servicos = await query(sql,[id_doctor]);
+  
+  return servicos;
+}
+
+export default { Listar, Inserir, Editar, Excluir, ListarServicos};
