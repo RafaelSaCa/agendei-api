@@ -1,25 +1,6 @@
 import { query } from "../database/sqlite.js";
 
 
-// async function Listar(name) {
-
-//   let filtro = [];
-
-//   let sql = "select * from doctors ";
-
-//   if (name){
-//      sql = sql + "where name like ? ";
-//      filtro.push('%' + name + '%');
-//   }
-
-//   sql= sql + "order by name"
-
-//   const doctors = await query(sql,filtro);
-  
-//   return doctors;
-// }
-
-
 async function Inserir(name, email, password) {
 
   let sql = `insert into users(name, email, password) values(?, ?, ?)
@@ -44,23 +25,14 @@ async function ListarByEmail(email) {
     return user[0];
 
 }
-// async function Editar(id_doctor, name, specialty, icon) {
 
-//   let sql = `update doctors set name=?, specialty=?, icon=?
-//              where id_doctor = ?`;
+async function Profile(id_user) {
 
-//   await query (sql, [name, specialty, icon, id_doctor]);
+   let sql = "select id_user, name, email from users where id_user = ? ";
 
-//   return {id_doctor};
-// }
+   const user = await query(sql, [id_user]);
 
-// async function Excluir(id_doctor) {
+   return user[0]
+}
 
-//   let sql = `delete from doctors where id_doctor = ?`;
-
-//   await query (sql, [id_doctor]);
-
-//   return {id_doctor};
-// }
-
-export default {Inserir, ListarByEmail};
+export default {Inserir, ListarByEmail,Profile};

@@ -1,12 +1,5 @@
 import serviceUser from "../services/service.user.js";
 
-// async function Listar(req, res) {
-
-//   const name = req.query.name;
-//   const doctors = await serviceDoctor.Listar(name);
-
-//   res.status(200).json(doctors);
-// }
 
 async function Inserir(req, res) {
 
@@ -30,25 +23,14 @@ async function Login(req, res) {
    res.status(200).json(user);
 }
 
+async function Profile(req, res) {
 
-// async function Editar(req, res) {
+  const id_user = req.id_user;
+  const user = await serviceUser.Profile(id_user);
 
-//   const id_doctor = req.params.id_doctor;
-//   const {name, specialty, icon} = req.body;
-
-//   const doctor = await serviceDoctor.Editar(id_doctor, name,specialty,icon);
-
-//   res.status(200).json(doctor);
-// }
-
-// async function Excluir(req, res) {
-
-//   const id_doctor = req.params.id_doctor;
-
-//   const doctor = await serviceDoctor.Excluir(id_doctor);
-
-//   res.status(200).json(doctor);
-// }
+  res.status(200).json(user);
+}
 
 
-export default {Inserir, Login};
+
+export default {Inserir, Login, Profile};

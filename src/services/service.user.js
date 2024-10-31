@@ -1,12 +1,6 @@
 import repositoryUser from "../repositories/respository.user.js";
 import bcrypt from "bcrypt";
 import jwt from "../token.js";
-// async function Listar(name) {
-
-//   const doctors = await repositoryDoctor.Listar(name);
-
-//   return doctors;
-// }
 
 async function Inserir(name, email, password) {
 
@@ -36,18 +30,12 @@ async function Login(email, password) {
       return [];
   }
 }
-// async function Editar(id_doctor, name,specialty,icon) {
 
-//   const doctor = await repositoryDoctor.Editar(id_doctor, name,specialty,icon);
+async function Profile(id_user) {
+  
+  const user = await repositoryUser.Profile(id_user);
+  
+  return user;
+}
 
-//   return doctor;
-// }
-
-// async function Excluir(id_doctor) {
-
-//   const doctor = await repositoryDoctor.Excluir(id_doctor);
-
-//   return doctor;
-// }
-
-export default { Inserir, Login };
+export default { Inserir, Login, Profile };
